@@ -2,8 +2,6 @@ import Waypoints.Waypoints;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class FileUtilTest {
