@@ -28,4 +28,31 @@ public class FileUtil {
 
 		return lines;
 	}
+
+	public static String[] getFileAsArray(String file){
+		return getFileAsArray(new File(file));
+	}
+
+	public static String[] getFileAsArray(File file){
+		final String[] output = new String[countLines(file)];
+		final Scanner scanner;
+
+		try {
+			scanner = new Scanner(file);
+		} catch (FileNotFoundException e) {
+			throw new RuntimeException(e);
+		}
+
+		int counter = 0;
+		while(scanner.hasNextLine()) {
+			final String text = scanner.nextLine();
+			if(text.isBlank())
+				continue;
+			output[counter] = text;
+			counter++;
+		}
+
+		return output;
+	}
+
 }
