@@ -1,6 +1,8 @@
+package Waypoints;
+
 /**
  * Represents a waypoint with common data, supports additional data<br>
- * Subclasses of Waypoint are not designed to be compatible with each other for calculations
+ * Subclasses of Waypoints.Waypoint are not designed to be compatible with each other for calculations
  */
 public abstract class Waypoint {
 
@@ -11,7 +13,7 @@ public abstract class Waypoint {
 	private final double height; // arbitrary
 
 	/**
-	 * Waypoints are immutable, all fields are final and must be defined within the constructor
+	 * Waypoints.Waypoints are immutable, all fields are final and must be defined within the constructor
 	 * @param name the English name associated with the waypoint
 	 * @param code the compact code associated with the waypoint
 	 * @param posX arbitrary x position

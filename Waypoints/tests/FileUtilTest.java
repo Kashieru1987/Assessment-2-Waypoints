@@ -1,3 +1,4 @@
+import Waypoints.Waypoints;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +11,6 @@ class FileUtilTest {
 	@Test
 	@DisplayName("UK_waypoints lines")
 	void countLinesFull() {
-		System.out.println(new File(Waypoints.WAYPOINTS.getFilePath()).getAbsolutePath());
 		assertEquals(2572, FileUtil.countLines(Waypoints.WAYPOINTS.getFilePath()));
 	}
 
