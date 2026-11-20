@@ -1,8 +1,8 @@
-package Waypoints;
+package WaypointUtil;
 
 /**
  * Represents a waypoint with common data, supports additional data<br>
- * Subclasses of Waypoints.Waypoint are not designed to be compatible with each other for calculations
+ * Subclasses of Waypoint are not designed to be compatible with each other for calculations
  */
 public abstract class Waypoint {
 
@@ -10,17 +10,18 @@ public abstract class Waypoint {
 	private final String code;
 	private final String posX; // arbitrary
 	private final String posY; //arbitrary
-	private final double height; // arbitrary
+	private final String height; // arbitrary
 
 	/**
-	 * Waypoints.Waypoints are immutable, all fields are final and must be defined within the constructor
-	 * @param name the English name associated with the waypoint
-	 * @param code the compact code associated with the waypoint
-	 * @param posX arbitrary x position
-	 * @param posY arbitrary y position
+	 * Waypoints are immutable, all fields are final and must be defined within the constructor
+	 *
+	 * @param name   the English name associated with the waypoint
+	 * @param code   the compact code associated with the waypoint
+	 * @param posX   arbitrary x position
+	 * @param posY   arbitrary y position
 	 * @param height arbitrary height
 	 */
-	protected Waypoint(String name, String code, String posX, String posY, double height) {
+	protected Waypoint(String name, String code, String posX, String posY, String height) {
 		this.name = name;
 		this.code = code;
 		this.posX = posX;

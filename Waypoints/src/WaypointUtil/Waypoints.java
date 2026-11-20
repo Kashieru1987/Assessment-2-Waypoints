@@ -1,4 +1,4 @@
-package Waypoints;
+package WaypointUtil;
 
 public enum Waypoints {
 	WAYPOINTS("UK_waypoints.csv"),
