@@ -4,8 +4,8 @@ public enum Waypoints {
 	WAYPOINTS100("UK_waypoints100.csv"),
 	WAYPOINTS_OSG("wainwrights_OSGrid.csv");
 
-	final String folderPath = "data/";
-	final String fileName;
+	private final String folderPath = "data/";
+	private final String fileName;
 
 	private Waypoints(String file) {
 		this.fileName = file;

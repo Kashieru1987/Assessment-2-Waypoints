@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.Scanner;
 
 public class Main {
@@ -12,7 +13,8 @@ public class Main {
 		final String userInput = scanner.nextLine();
 
 		waypointFile = Waypoints.selectWaypointFile(userInput);;
-		System.out.println(waypointFile.getFilePath());
+		final File file = new File(waypointFile.getFilePath());
+
 	}
 
 	public static void main(String[] args) {
