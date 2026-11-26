@@ -2,6 +2,7 @@ import WaypointUtil.GPSWaypoint;
 import WaypointUtil.Waypoint;
 import WaypointUtil.Waypoints;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -13,7 +14,7 @@ public class Main {
 		this.scanner = new Scanner(System.in);
 		this.waypointFile = selectWaypointFile(args);
 
-		final String[] waypointArray = FileUtil.getFileAsArray(waypointFile.getFilePath()); // yay, condition fulfilled
+		final List<String> waypointArray = FileUtil.getFileAsArray(waypointFile.getFilePath()); // yay, condition fulfilled
 
 		for(Waypoint waypoint : GPSWaypoint.parseGPSWaypoints(waypointArray)) {
 			System.out.println(waypoint);

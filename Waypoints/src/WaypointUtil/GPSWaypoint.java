@@ -35,13 +35,13 @@ public class GPSWaypoint extends Waypoint {
 	 * @param file the file containing waypoints and a header
 	 * @return a list of GPSWaypoints parsed from the file
 	 */
-	public static List<Waypoint> parseGPSWaypoints(String[] file) {
+	public static List<Waypoint> parseGPSWaypoints(List<String> file) {
 		final List<Waypoint> output = new ArrayList<>();
 
-		final Map<Integer, String> headerMap = mapHeader(file[0]);
+		final Map<Integer, String> headerMap = mapHeader(file.getFirst());
 
-		for(int i = 1; i < file.length; i++) {
-			final Waypoint waypoint = parseLine(file[i], headerMap);
+		for(int i = 1; i < file.size(); i++) {
+			final Waypoint waypoint = parseLine(file.get(i), headerMap);
 
 			if(waypoint == null)
 				continue;
