@@ -7,6 +7,9 @@ import java.util.Map;
 
 public class GPSWaypoint extends Waypoint {
 
+	/**
+	 * holds the variable extra associated data for the waypoint
+	 */
 	private final List<String> data;
 
 	/**
@@ -25,6 +28,13 @@ public class GPSWaypoint extends Waypoint {
 		this.data = data;
 	}
 
+	/**
+	 * Parses an entire file of waypoints using the header file<br>
+	 * All extra/misc data is thrown into the "description" of the waypoint
+	 *
+	 * @param file the file containing waypoints and a header
+	 * @return a list of GPSWaypoints parsed from the file
+	 */
 	public static List<Waypoint> parseGPSWaypoints(String[] file) {
 		final List<Waypoint> output = new ArrayList<>();
 
@@ -42,10 +52,25 @@ public class GPSWaypoint extends Waypoint {
 		return output;
 	}
 
+	/**
+	 * This function is overloaded here to split the line by its commas
+	 *
+	 * @param line the line containing the waypoint data
+	 * @param headerMap the header map that matches the data points to the GPSWaypoint fields
+	 * @return a GPSWaypoint parsed from the line
+	 */
 	private static Waypoint parseLine(String line, Map<Integer, String> headerMap) {
 		return parseLine(line.split(","), headerMap);
 	}
 
+	/**
+	 * Matches the data on the line to waypoint fields using the header map<br>
+	 * Throws any misc data into the "description" list field
+	 *
+	 * @param line the line containing the waypoint data
+	 * @param headerMap the header map that matches the data points to the GPSWaypoint fields
+	 * @return a GPSWaypoint parsed from the line
+	 */
 	private static Waypoint parseLine(String[] line, Map<Integer, String> headerMap) {
 		String name = "";
 		String code = "";
@@ -73,10 +98,24 @@ public class GPSWaypoint extends Waypoint {
 		return new GPSWaypoint(name, code, longitude, latitude, elevation, data);
 	}
 
+	/**
+	 * This function is overloaded to split the header line into a String[]
+	 *
+	 * @param header the header line of the waypoint file
+	 * @return a map associating the data points with respective waypoint fields
+	 */
 	private static Map<Integer, String> mapHeader(String header) {
 		return mapHeader(header.split(","));
 	}
 
+	/**
+	 * Checks the first three letters of each item in the header<br>
+	 * Matches required fields for a waypoint<br>
+	 * Throws misc/unknown values into the description
+	 *
+	 * @param header the header line of the waypoint file
+	 * @return a map associating the data points with respective waypoint fields
+	 */
 	private static Map<Integer, String> mapHeader(String[] header) {
 		final Map<Integer, String> headerMap = new HashMap<>();
 
@@ -109,6 +148,12 @@ public class GPSWaypoint extends Waypoint {
 		return getHeightInMeters(this.height);
 	}
 
+	/**
+	 * Converts the height field from a waypoint file into a value for mathematics or display
+	 *
+	 * @param height the height field from the waypoint file
+	 * @return the height in meters
+	 */
 	public double getHeightInMeters(String height) {
 		final boolean isMetre = isInMetres(height);
 		final int unitLength = isMetre ? 1 : 2;
@@ -120,6 +165,12 @@ public class GPSWaypoint extends Waypoint {
 		return isMetre ? heightDouble : (int) (heightDouble * 0.3048);
 	}
 
+	/**
+	 * Checks if a height is given in meters or feet
+	 *
+	 * @param height the height field from the waypoint file
+	 * @return true if the height passed in is in meters
+	 */
 	public static boolean isInMetres(String height) {
 		return height.substring(height.length() - 1).equalsIgnoreCase("m");
 	}
