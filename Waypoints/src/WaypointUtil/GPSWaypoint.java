@@ -154,7 +154,7 @@ public class GPSWaypoint extends Waypoint {
 	 * @param height the height field from the waypoint file
 	 * @return the height in meters
 	 */
-	public double getHeightInMeters(String height) {
+	public static double getHeightInMeters(String height) {
 		final boolean isMetre = isInMetres(height);
 		final int unitLength = isMetre ? 1 : 2;
 		final String heightString = height.substring(0, height.length() - unitLength);
@@ -172,6 +172,8 @@ public class GPSWaypoint extends Waypoint {
 	 * @return true if the height passed in is in meters
 	 */
 	public static boolean isInMetres(String height) {
+		if(height.isEmpty())
+			return false;
 		return height.substring(height.length() - 1).equalsIgnoreCase("m");
 	}
 
