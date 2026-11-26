@@ -1,12 +1,13 @@
-import Waypoints.Waypoints;
+import WaypointUtil.GPSWaypoint;
+import WaypointUtil.Waypoint;
+import WaypointUtil.Waypoints;
 
-import java.io.File;
 import java.util.Scanner;
 
 public class Main {
 
 	private final Scanner scanner;
-	private Waypoints waypointFile;
+	private final Waypoints waypointFile;
 
 	public Main() {
 		scanner = new Scanner(System.in);
@@ -15,7 +16,11 @@ public class Main {
 		final String userInput = scanner.nextLine();
 
 		waypointFile = Waypoints.selectWaypointFile(userInput);;
-		final File file = new File(waypointFile.getFilePath());
+		final String[] waypointArray = FileUtil.getFileAsArray(waypointFile.getFilePath()); // yay, condition fulfilled
+
+		for(Waypoint waypoint : GPSWaypoint.parseGPSWaypoints(waypointArray)) {
+			System.out.println(waypoint);
+		}
 
 	}
 

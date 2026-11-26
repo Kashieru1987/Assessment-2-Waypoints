@@ -10,7 +10,7 @@ public abstract class Waypoint {
 	private final String code;
 	private final String posX; // arbitrary
 	private final String posY; //arbitrary
-	private final String height; // arbitrary
+	protected final String height; // arbitrary
 
 	/**
 	 * Waypoints are immutable, all fields are final and must be defined within the constructor
@@ -97,7 +97,7 @@ public abstract class Waypoint {
 				+","+getCode()
 				+",pos["+getPosX()+","+getPosY()+"]"
 				+",h:"+getHeightInMeters()+"m"
-				+", "+getAdditionalDataString()+"}";
+				+","+getAdditionalDataString()+"}";
 	}
 
 }
