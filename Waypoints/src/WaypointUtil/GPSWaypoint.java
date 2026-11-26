@@ -114,10 +114,10 @@ public class GPSWaypoint extends Waypoint {
 		final int unitLength = isMetre ? 1 : 2;
 		final String heightString = height.substring(0, height.length() - unitLength);
 
-		final int heightInt = Integer.parseInt(heightString);
+		final double heightDouble = Double.parseDouble(heightString);
 
 		//constant for ft to m, taken from SampleCode/HelperLibrary.java
-		return isMetre ? heightInt : (int) (heightInt * 0.3048);
+		return isMetre ? heightDouble : (int) (heightDouble * 0.3048);
 	}
 
 	public static boolean isInMetres(String height) {
