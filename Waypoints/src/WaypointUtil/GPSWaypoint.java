@@ -26,7 +26,7 @@ public class GPSWaypoint extends Waypoint {
 	}
 
 	public static List<Waypoint> parseGPSWaypoints(String[] file) {
-		final List<Waypoint> output = new ArrayList<Waypoint>();
+		final List<Waypoint> output = new ArrayList<>();
 
 		final Map<Integer, String> headerMap = mapHeader(file[0]);
 
@@ -52,7 +52,7 @@ public class GPSWaypoint extends Waypoint {
 		String latitude = "";
 		String longitude = "";
 		String elevation = "";
-		final List<String> data = new ArrayList<String>();
+		final List<String> data = new ArrayList<>();
 
 		for(int i = 0; i < line.length; i++) {
 
@@ -91,7 +91,6 @@ public class GPSWaypoint extends Waypoint {
 			}
 		}
 
-		System.out.println(headerMap);
 		return headerMap;
 	}
 
@@ -107,11 +106,22 @@ public class GPSWaypoint extends Waypoint {
 
 	@Override
 	public double getHeightInMeters() {
-		final String height = this.height;
-		final int heightInt = Integer.parseInt(height.substring(0, height.length() - 2));
+		return getHeightInMeters(this.height);
+	}
+
+	public double getHeightInMeters(String height) {
+		final boolean isMetre = isInMetres(height);
+		final int unitLength = isMetre ? 1 : 2;
+		final String heightString = height.substring(0, height.length() - unitLength);
+
+		final int heightInt = Integer.parseInt(heightString);
 
 		//constant for ft to m, taken from SampleCode/HelperLibrary.java
-		return (int) (heightInt * 0.3048);
+		return isMetre ? heightInt : (int) (heightInt * 0.3048);
+	}
+
+	public static boolean isInMetres(String height) {
+		return height.substring(height.length() - 1).equalsIgnoreCase("m");
 	}
 
 	@Override
